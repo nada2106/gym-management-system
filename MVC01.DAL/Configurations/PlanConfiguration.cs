@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MVC01.Models;
+using MVC01.DAL.Models;
 
 namespace MVC01.Configurations
 {

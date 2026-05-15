@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MVC01.DAL.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC01.Dbcontexts;
 
@@ -6,23 +7,24 @@ namespace MVC01.Controllers
 {
     public class PlanController : Controller
     {
-        private readonly GymDbCotext _context;
-        public PlanController()
+        //private readonly GymDbCotext _context;
+        private readonly IPlanRepository planRepository;
+        public PlanController(IPlanRepository planRepository)
         {
-            _context = new GymDbCotext();
+            this.planRepository = planRepository;
         }
         // GET: PlanController
         //index 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var plans = await _context.Plans.ToListAsync();
+            var plans = await planRepository.GetAllPlansAsync(cancellationToken: cancellationToken);
             return View(plans);
         }
         //details
         //GET: PlanController/Details/id
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, CancellationToken cancellationToken)
         {
-            var plan = await _context.Plans.FindAsync(id);
+            var plan = await planRepository.GetPlanByIdAsync(id, cancellationToken: cancellationToken);
             if (plan == null)
             {
                 return NotFound();

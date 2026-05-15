@@ -1,14 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVC01.Models;
+using MVC01.DAL.Models;
 
 namespace MVC01.Dbcontexts
 {
     public class GymDbCotext : DbContext
     {
         public DbSet<Plan> Plans { get; set; } = null!;
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DbSet<Trainer> Trainers { get; set; } = null!;
+        public DbSet<Member> Members { get; set; } = null!;
+
+        public GymDbCotext(DbContextOptions<GymDbCotext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=GymDb;Trusted_Connection=True;TrustServerCertificate = true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

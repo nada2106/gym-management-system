@@ -13,8 +13,8 @@ namespace MVC01.DAL.Models
         public int MemberId { get; set; }
         public DateTime BookingDate { get; set; }
         public bool IsAttended { get; set; }
-        public Member Member { get; set; }
+        public Member? Member { get; set; }
         public int SessionId { get; set; }
-        public Session Session { get; set; }
+        public Session? Session { get; set; }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using MVC01.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MVC01.Dbcontexts;
 
 namespace MVC01.Controllers
 {
